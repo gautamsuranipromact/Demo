@@ -7,31 +7,29 @@ on:
     branches: [ master ]
     
 jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#      - name: Setup JDK
-#        uses: actions/setup-java@v3.0.0
-#        with:
-#          java-version: 17.0.2+8
-#          distribution: temurin
-#      - name: Make gradlew executable
-#        run: chmod +x ./gradlew
-#      - name: Build with Gradle
-#        run: ./gradlew build
-#      - name: Upload APK
-#        uses: actions/upload-artifact@v3.0.0
-#        with:
-#          name: app
-#          path: app/build/outputs/apk/debug/app-debug.apk
-#      - name: Make testfairy executable
-#        run: chmod +x ./testfairy-uploader.sh
-#      - name: Moving build to artifacts directory
-#        run: ./testfairy-uploader.sh app/build/outputs/apk/debug/app-debug.apk
-#
-
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v3.0.0
+        with:
+          java-version: 17.0.2+8
+          distribution: temurin
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Upload APK
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: app
+          path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Make testfairy executable
+        run: chmod +x ./testfairy-uploader.sh
+      - name: Moving build to artifacts directory
+        run: ./testfairy-uploader.sh app/build/outputs/apk/debug/app-debug.apk
 
   fastnale:
     runs-on: ubuntu-latest
