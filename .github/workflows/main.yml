@@ -44,6 +44,8 @@ jobs:
           ruby-version: 2.6.x
       - name: Install Dependencies
         run: gem install bundler && bundle install
+      - name: Make gradlew executable
+        run: chmod +x /home/runner/work/demo/demo/gradlew
       - name: Run Fastlane Assemble Lane
         run: fastlane assemble
       - name: Make testfairy executable
