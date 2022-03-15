@@ -27,7 +27,7 @@ jobs:
           name: app
           path: app/build/outputs/apk/debug/app-debug.apk
       - name: Moving build to artifacts directory
-        run: ./testfairy-uploader.sh
+        run: ./testfairy-uploader.sh app/build/outputs/apk/debug/app-debug.apk
         
 
       
