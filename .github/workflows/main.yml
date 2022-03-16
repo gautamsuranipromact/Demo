@@ -20,7 +20,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew app:bundleRelease
       - name: Upload APK
         uses: actions/upload-artifact@v3.0.0
         with:
@@ -49,4 +49,4 @@ jobs:
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
       - name: Moving build to artifacts directory
-        run: ./testfairy-uploader.sh app/build/outputs/apk/debug/app-debug.apk ${{ secrets.TESTFAIRY_API_KEY }}
+        run: ./testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
