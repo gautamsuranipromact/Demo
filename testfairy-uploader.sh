@@ -5,7 +5,7 @@
 UPLOADER_VERSION=2.14
 # Put your TestFairy API_KEY here. Find it here: https://app.testfairy.com/settings/#tab-api-key
 # This is a mandatory parameter.
-TESTFAIRY_API_KEY=$2
+TESTFAIRY_API_KEY=${{ secrets.TESTFAIRY_API_KEY }}
 
 # Tester Groups that will be allows to download the app and will be notified in case NOTIFY equals "on".
 # create those groups in https://app.testfairy.com/testers/ 
