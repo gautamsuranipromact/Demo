@@ -21,15 +21,10 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build with Gradle
         run: ./gradlew app:bundleRelease
-      - name: Upload APK
-        uses: actions/upload-artifact@v3.0.0
-        with:
-          name: app
-          path: app/build/outputs/apk/debug/app-debug.apk
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
-      - name: Moving build to artifacts directory
-        run: ./testfairy-uploader.sh app/build/outputs/apk/debug/app-debug.apk ${{ secrets.TESTFAIRY_API_KEY }}
+      - name: Moving APK to TestFairy
+        run: ./testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
 
   fastlane:
     runs-on: ubuntu-latest
@@ -48,5 +43,5 @@ jobs:
         run: fastlane assemble
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
-      - name: Moving build to artifacts directory
+      - name: Moving APK to TestFairy
         run: ./testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
