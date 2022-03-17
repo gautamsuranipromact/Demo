@@ -46,3 +46,4 @@ jobs:
         run: chmod +x ./testfairy-uploader.sh
       - name: Moving APK to TestFairy
         run: ./testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
+
