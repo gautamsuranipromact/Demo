@@ -19,9 +19,9 @@ android {
     signingConfigs {
         release {
             storeFile file("../doc/kotlincicd.jks")
-            storePassword "kotlincicd"
-            keyAlias "kotlincicd"
-            keyPassword "kotlincicd"
+            storePassword System.getenv("KOTLIN_CICD_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KOTLIN_CICD_KEYSTORE_ALIAS")
+            keyPassword System.getenv("KOTLIN_CICD_KEYSTORE_PASSWORD")
         }
     }
 
