@@ -6,13 +6,14 @@ platform :android do
       gradle(task: "assembleRelease")
     end
     lane :assembleDev do
+      releaseFilePath = File.join(Dir.pwd, "..", "../doc/kotlincicd.jks")
       gradle(
         task: "assemble",
         flavor: "dev",
         build_type: "Release",
         print_command: false,
         properties:{
-          "android.injected.signing.store.file" => "doc/kotlincicd.jks",
+          "android.injected.signing.store.file" => releaseFilePath,
           "android.injected.signing.store.password" => "kotlincicd",
           "android.injected.signing.key.alias" => "kotlincicd",
           "android.injected.signing.key.password" => "kotlincicd",
