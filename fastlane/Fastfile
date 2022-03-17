@@ -11,9 +11,9 @@ platform :android do
         print_command: false,
         properties:{
           "android.injected.signing.store.file" => releaseFilePath,
-          "android.injected.signing.store.password" => "kotlincicd",
-          "android.injected.signing.key.alias" => "kotlincicd",
-          "android.injected.signing.key.password" => "kotlincicd",
+          "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
+          "android.injected.signing.key.alias" => ENV["KEY_STORE_ALIAS"],
+          "android.injected.signing.key.password" => ENV["KEY_STORE_PASSWORD"],
         }
       )
     end
@@ -26,9 +26,9 @@ platform :android do
         print_command: false,
         properties:{
           "android.injected.signing.store.file" => releaseFilePath,
-          "android.injected.signing.store.password" => "kotlincicd",
-          "android.injected.signing.key.alias" => "kotlincicd",
-          "android.injected.signing.key.password" => "kotlincicd",
+          "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
+          "android.injected.signing.key.alias" => ENV["KEY_STORE_ALIAS"],
+          "android.injected.signing.key.password" => ENV["KEY_STORE_PASSWORD"],
         }
       )
     end
