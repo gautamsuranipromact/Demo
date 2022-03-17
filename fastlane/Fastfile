@@ -10,10 +10,12 @@ platform :android do
         task: "assemble",
         flavor: "dev",
         build_type: "Release",
+        print_command: false,
         properties:{
-          "storePassword" => "kotlincicd",
-          "keyAlias" => "kotlincicd",
-          "keyPassword" => "kotlincicd",
+          "android.injected.signing.store.file" => "../doc/kotlincicd.jks",
+          "android.injected.signing.store.password" => "kotlincicd",
+          "android.injected.signing.key.alias" => "kotlincicd",
+          "android.injected.signing.key.password" => "kotlincicd",
         }
       )
     end
