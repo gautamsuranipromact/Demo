@@ -32,24 +32,26 @@ jobs:
       - name: Moving APK to TestFairy
         run: ./testfairy-uploader.sh app/build/outputs/apk/dev/release/app-dev-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
 
-#  fastlane:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout Repo
-#        uses: actions/checkout@v2
-#      - run: ls
-#      - name: Set up Ruby 2.6
-#        uses: actions/setup-ruby@v1
-#        with:
-#          ruby-version: 2.6.x
-#      - name: Install Dependencies
-#        run: gem install bundler && bundle install
-#      - name: Make gradlew executable
-#        run: chmod +x /home/runner/work/demo/demo/gradlew
-#      - name: Run Fastlane Assemble Lane
-#        run: fastlane assembleDev
-#      - name: Make testfairy executable
-#        run: chmod +x ./testfairy-uploader.sh
-#      - name: Moving APK to TestFairy
-#        run: ./testfairy-uploader.sh app/build/outputs/apk/dev/release/app-dev-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
+  fastlane:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - run: ls
+      - name: Set up Ruby 2.6
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+      - name: Install Dependencies
+        run: gem install bundler && bundle install
+      - name: Make gradlew executable
+        run: chmod +x /home/runner/work/demo/demo/gradlew
+      - name: Run Fastlane Increment VC Lane
+        run: fastlane increment_vc
+      - name: Run Fastlane Assemble Lane
+        run: fastlane assembleDev
+      - name: Make testfairy executable
+        run: chmod +x ./testfairy-uploader.sh
+      - name: Moving APK to TestFairy
+        run: ./testfairy-uploader.sh app/build/outputs/apk/dev/release/app-dev-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
 

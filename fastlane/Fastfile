@@ -8,4 +8,9 @@ platform :android do
     lane :assembleDev do
       gradle(task: "assembleDevRelease")
     end
+    lane :increment_vc do
+      increment_version_code(
+        gradle_file_path: "./app/build.gradle",
+      )
+    end
 end
