@@ -20,7 +20,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Build with Gradle
-        run: ./gradlew app:assembleRelease
+        run: ./gradlew app:assembleMasterRelease
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
       - name: Moving APK to TestFairy
@@ -41,7 +41,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x /home/runner/work/demo/demo/gradlew
       - name: Run Fastlane Assemble Lane
-        run: fastlane assemble
+        run: fastlane assembleMaster
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
       - name: Moving APK to TestFairy

@@ -2,7 +2,7 @@ default_platform(:android)
 
 platform :android do
    desc "Assemble source"
-    lane :assemble do
-      gradle(task: "assembleRelease")
+    lane :assembleMaster do
+      gradle(task: "assembleMasterRelease")
     end
 end
