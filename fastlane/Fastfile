@@ -5,4 +5,7 @@ platform :android do
     lane :assemble do
       gradle(task: "assembleRelease")
     end
+    lane :assembleDev do
+      gradle(task: "assembleDevRelease")
+    end
 end
