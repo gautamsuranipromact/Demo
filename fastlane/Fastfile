@@ -3,7 +3,19 @@ default_platform(:android)
 platform :android do
    desc "Assemble source"
     lane :assemble do
-      gradle(task: "assembleRelease")
+      releaseFilePath = File.join(Dir.pwd, "..", "doc/kotlincicd.jks")
+      gradle(
+        task: "assemble",
+        flavor: "master",
+        build_type: "Release",
+        print_command: false,
+        properties:{
+          "android.injected.signing.store.file" => releaseFilePath,
+          "android.injected.signing.store.password" => "kotlincicd",
+          "android.injected.signing.key.alias" => "kotlincicd",
+          "android.injected.signing.key.password" => "kotlincicd",
+        }
+      )
     end
     lane :assembleDev do
       releaseFilePath = File.join(Dir.pwd, "..", "doc/kotlincicd.jks")
