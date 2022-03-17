@@ -21,6 +21,9 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build with Gradle
         run: ./gradlew app:assembleMasterRelease
+        env:
+          KOTLIN_CICD_KEYSTORE_ALIAS: ${{ secrets.KOTLIN_CICD_KEYSTORE_ALIAS }}
+          KOTLIN_CICD_KEYSTORE_PASSWORD: ${{ secrets.KOTLIN_CICD_KEYSTORE_PASSWORD }}
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
       - name: Moving APK to TestFairy
