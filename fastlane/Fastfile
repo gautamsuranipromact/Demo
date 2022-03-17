@@ -11,9 +11,9 @@ platform :android do
         flavor: "dev",
         build_type: "Release",
         properties:{
-          "android.injected.signing.store.password" => "kotlincicd",
-          "android.injected.signing.key.alias" => "kotlincicd",
-          "android.injected.signing.key.password" => "kotlincicd",
+          "storePassword" => "kotlincicd",
+          "keyAlias" => "kotlincicd",
+          "keyPassword" => "kotlincicd",
         }
       )
     end
