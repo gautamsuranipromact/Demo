@@ -27,7 +27,7 @@ jobs:
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
       - name: Moving APK to TestFairy
-        run: ./testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
+        run: ./testfairy-uploader.sh app/build/outputs/apk/master/release/app-master-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
 
   fastlane:
     runs-on: ubuntu-latest
@@ -44,8 +44,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x /home/runner/work/demo/demo/gradlew
       - name: Run Fastlane Assemble Lane
-        run: fastlane assemble
+        run: fastlane assembleMaster
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
       - name: Moving APK to TestFairy
-        run: ./testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
+        run: ./testfairy-uploader.sh app/build/outputs/apk/master/release/app-master-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
+
