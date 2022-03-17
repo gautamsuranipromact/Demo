@@ -6,7 +6,7 @@ platform :android do
       gradle(task: "assembleRelease")
     end
     lane :assembleDev do
-      releaseFilePath = File.join(Dir.pwd, "..", "../doc/kotlincicd.jks")
+      releaseFilePath = File.join(Dir.pwd, "..", "doc/kotlincicd.jks")
       gradle(
         task: "assemble",
         flavor: "dev",
