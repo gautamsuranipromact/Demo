@@ -6,7 +6,16 @@ platform :android do
       gradle(task: "assembleRelease")
     end
     lane :assembleDev do
-      gradle(task: "assembleDevRelease")
+      gradle(
+        task: "assemble",
+        flavor: "dev",
+        build_type: "Release",
+        properties:{
+          "android.injected.signing.store.password" => "kotlincicd",
+          "android.injected.signing.key.alias" => "kotlincicd",
+          "android.injected.signing.key.password" => "kotlincicd",
+        })
+      )
     end
     lane :increment_vc do
       increment_version_code(
