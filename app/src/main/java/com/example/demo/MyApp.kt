@@ -7,7 +7,7 @@ class MyApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        TestFairy.begin(this, "SDK-DxnP94AH");
+        TestFairy.begin(this, "SDK-DxnP94AH")
         instance = this
     }
 
