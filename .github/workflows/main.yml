@@ -60,13 +60,22 @@ jobs:
         run: chmod +x /home/runner/work/demo/demo/gradlew
       - name: Run Fastlane Increment VC Lane
         run: fastlane increment_vc
-      - name: Run Fastlane Assemble Lane
-        run: fastlane assembleMaster
+      - name: Run Fastlane Bundle Lane (Master)
+        run: fastlane bundleMaster
         env:
           KOTLIN_CICD_KEYSTORE_ALIAS: ${{ secrets.KOTLIN_CICD_KEYSTORE_ALIAS }}
           KOTLIN_CICD_KEYSTORE_PASSWORD: ${{ secrets.KOTLIN_CICD_KEYSTORE_PASSWORD }}
+        if: github.ref == 'refs/heads/master'
+      - name: Run Fastlane Assemble Lane (Dev)
+        run: fastlane assembleDev
+        env:
+          KOTLIN_CICD_KEYSTORE_ALIAS: ${{ secrets.KOTLIN_CICD_KEYSTORE_ALIAS }}
+          KOTLIN_CICD_KEYSTORE_PASSWORD: ${{ secrets.KOTLIN_CICD_KEYSTORE_PASSWORD }}
+        if: github.ref == 'refs/heads/dev'
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
+        if: github.ref == 'refs/heads/dev'
       - name: Moving APK to TestFairy
         run: ./testfairy-uploader.sh app/build/outputs/apk/master/release/app-master-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
+        if: github.ref == 'refs/heads/dev'
 

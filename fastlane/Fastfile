@@ -2,10 +2,10 @@ default_platform(:android)
 
 platform :android do
    desc "Assemble source"
-    lane :assembleMaster do
+    lane :bundleMaster do
      releaseFilePath = File.join(Dir.pwd, "..", "doc/kotlincicd.jks")
       gradle(
-        task: "assemble",
+        task: "bundle",
         flavor: "master",
         build_type: "Release",
         print_command: false,
