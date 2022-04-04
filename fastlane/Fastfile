@@ -34,11 +34,7 @@ platform :android do
     end
     lane :increment_vc do
       increment_version_code(
-        gradle_file_path: "./app/build.gradle",
-        version_name: "1.0." + ENV["GITHUB_RUN_NUMBER"]
-        )
-      increment_version_code(
-              gradle_file_path: "./app/build.gradle",
-              version_code: ENV["GITHUB_RUN_NUMBER"])
+        gradle_file_path: "./app/build.gradle"
+      )
     end
 end
