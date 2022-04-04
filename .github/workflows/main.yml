@@ -2,10 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master,dev ]
   pull_request:
-    branches: [ master ]
-    
+    branches: [ master,dev ]
+
 jobs:
   github-action:
     runs-on: ubuntu-latest
@@ -22,18 +22,27 @@ jobs:
         with:
           gradlePath: app/build.gradle # or app/build.gradle.kts
           versionCode: ${{github.run_number}}
-          versionName: 1.0.0
+          versionName: 1.0.${{github.run_number}}
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-      - name: Build with Gradle
-        run: ./gradlew app:assembleMasterRelease
+      - name: Build with Dev Gradle
+        run: ./gradlew app:assembleDevRelease
         env:
           KOTLIN_CICD_KEYSTORE_ALIAS: ${{ secrets.KOTLIN_CICD_KEYSTORE_ALIAS }}
           KOTLIN_CICD_KEYSTORE_PASSWORD: ${{ secrets.KOTLIN_CICD_KEYSTORE_PASSWORD }}
+        if: github.ref == 'refs/heads/dev'
+      - name: Build with Master Gradle
+        run: ./gradlew app:bundleMasterRelease
+        env:
+          KOTLIN_CICD_KEYSTORE_ALIAS: ${{ secrets.KOTLIN_CICD_KEYSTORE_ALIAS }}
+          KOTLIN_CICD_KEYSTORE_PASSWORD: ${{ secrets.KOTLIN_CICD_KEYSTORE_PASSWORD }}
+        if: github.ref == 'refs/heads/master'
       - name: Make testfairy executable
         run: chmod +x ./testfairy-uploader.sh
+        if: github.ref == 'refs/heads/dev'
       - name: Moving APK to TestFairy
         run: ./testfairy-uploader.sh app/build/outputs/apk/master/release/app-master-release.apk ${{ secrets.TESTFAIRY_API_KEY }}
+        if: github.ref == 'refs/heads/dev'
 
   fastlane:
     runs-on: ubuntu-latest

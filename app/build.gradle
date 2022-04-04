@@ -35,10 +35,12 @@ android {
     productFlavors {
         master {
             dimension "version"
+            resValue "string", "app_name", "Main Demo App"
         }
         dev {
             dimension "version"
             applicationIdSuffix ".dev"
+            resValue "string", "app_name", "Dev Demo App"
         }
     }
 
