@@ -60,6 +60,8 @@ jobs:
         run: chmod +x /home/runner/work/demo/demo/gradlew
       - name: Run Fastlane Increment VC Lane
         run: fastlane increment_vc
+        env:
+          GITHUB_RUN_NUMBER: ${{github.run_number}}
       - name: Run Fastlane Bundle Lane (Master)
         run: fastlane bundleMaster
         env:
